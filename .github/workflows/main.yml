@@ -1,0 +1,29 @@
+name: main
+
+permissions:
+  contents: write
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+      - 'v*.*.*/*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Create release folder
+        run: rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' . ./SoloLootManager
+
+      - name: Create ZIP of release folder
+        run: zip -r SoloLootManager.zip SoloLootManager
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: SoloLootManager.zip
