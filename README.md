@@ -26,6 +26,8 @@ Rules will be added automatically for new items detected in your inventory or an
 
 When new rules are added in this way, the `Config` button on the main window will glow red to indicate that there are new rules that need your attention in setting an action.  The `Unhandled Rules` tab in the config window will also glow red.
 
+You can right click on any item icon or name listed in the rules to get the inspect popup window for it.
+
 ### Rule Search
 
 Worth noting is that each 'word' in the search will be treated as it's own search, meaning that you can type something like `word energy` to filter down to `Words of Energy`.
