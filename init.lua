@@ -1103,15 +1103,22 @@ local function DrawConfigGUI()
             GUI_Config.Refresh.Sort.Rules = false
           end
 
-          for _,entry in ipairs(Table_Cache.Filtered) do
-            ImGui.PushID(entry.ID)
+          local clipper = ImGuiListClipper.new()
+          clipper:Begin(#Table_Cache.Filtered)
+          while clipper:Step() do
+            for i = clipper.DisplayStart, clipper.DisplayEnd - 1, 1 do
+              local entry = Table_Cache.Filtered[i + 1]
 
-            ImGui.TableNextRow()
+              ImGui.PushID(entry.ID)
 
-            DrawRuleRow(entry)
+              ImGui.TableNextRow()
 
-            ImGui.PopID()
+              DrawRuleRow(entry)
+
+              ImGui.PopID()
+            end
           end
+          clipper:End()
 
           ImGui.EndTable()
         end
@@ -1151,15 +1158,22 @@ local function DrawConfigGUI()
             GUI_Config.Refresh.Sort.Unhandled = false
           end
 
-          for _,entry in ipairs(Table_Cache.Unhandled) do
-            ImGui.PushID(entry.ID)
+          local clipper = ImGuiListClipper.new()
+          clipper:Begin(#Table_Cache.Unhandled)
+          while clipper:Step() do
+            for i = clipper.DisplayStart, clipper.DisplayEnd - 1, 1 do
+              local entry = Table_Cache.Unhandled[i + 1]
 
-            ImGui.TableNextRow()
+              ImGui.PushID(entry.ID)
 
-            DrawRuleRow(entry)
+              ImGui.TableNextRow()
 
-            ImGui.PopID()
+              DrawRuleRow(entry)
+
+              ImGui.PopID()
+            end
           end
+          clipper:End()
 
           ImGui.EndTable()
         end
