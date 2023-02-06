@@ -734,6 +734,8 @@ local function SellItem(item)
     Write.Debug("Item in inventory: [%s] %s x %s", rule.Enum_Action, item.Stack(), rule.ItemLink)
 
     if rule.Enum_Action == 'unhandled' then
+      Write.Warn("Unhandled item: %s", rule.ItemLink)
+
       return nil, nil, true
     elseif rule.Enum_Action == 'sell' then
       mq.cmdf('/nomodkey /shiftkey /itemnotify %s leftmouseup', ItemToLocation(item))
@@ -819,6 +821,8 @@ local function DonateTributeItem(item)
     Write.Debug("Item in inventory: [%s] %s x %s", rule.Enum_Action, item.Stack(), rule.ItemLink)
 
     if rule.Enum_Action == 'unhandled' then
+      Write.Warn("Unhandled item: %s", rule.ItemLink)
+
       return nil, nil, true
     elseif rule.Enum_Action == 'tribute' then
       -- This delay is necessary because there is seemingly a delay between donating and selecting the next item.
